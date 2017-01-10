@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+var debug = require('debug')('MODULE_NAME');
+var app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+    if(process.env.NODE_ENV){
+      console.log("Your server is in %s mode.",process.env.NODE_ENV); //logs server environment
+    }else{
+      console.log("***Set your server environment before production.***");
+    }
+});
+
+
+//catch eaddrinuse error
+process.on('uncaughtException', function(err) {
+    if(err.errno === 'EADDRINUSE'){
+        console.log(err);
+      }
+    //stop accepting req
+    server.close(function () {
+      process.exit(1); //clean up
+    });
+});
+
+process.on('SIGTERM', function() {
+    //stop accepting req
+      server.close(function () {
+        process.exit(); //clean up
+      });
+
+});
+
+//catch ctrl+c event (for development)
+process.on('SIGINT', function() {
+        server.close(function () {
+          console.log("Server is Stopped!!! :)");
+          process.exit(); //clean up
+        });
+});
