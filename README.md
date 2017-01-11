@@ -1,6 +1,6 @@
-Node Server Starter Kit (NSSK)
+The React WebPack Express
 =====================
-Easily start a Node server (Production ready).<br>
+Easily start a React App on a Node server (Production ready).<br>
 Download files in to your app folder.
 
 How to Start up the Server
