@@ -1,6 +1,7 @@
 The React WebPack Express
 =====================
 Easily start a React App on a Node server (Production ready).<br>
+Now with Bootstrap 3!
 Download files in to your app folder.
 
 How to Start up the Server
